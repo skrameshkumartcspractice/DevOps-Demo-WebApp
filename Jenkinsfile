@@ -51,7 +51,7 @@ pipeline {
                 always{
                     jiraAddComment comment: "Deploy to Test was successful ${env.JOB_NAME} ${BUILD_NUMBER}", idOrKey: 'DEV-3', site: 'jira'
                     jiraSendDeploymentInfo environmentId: 'us-prod-1', environmentName: 'us-prod-1', environmentType: 'testing', serviceIds: [''], site: 'tcsdevopscs.atlassian.net', state: 'successful'
-                    jiraTransitionIssue idOrKey: 'DEV-3', input: transitionInputInp, site: 'jira'
+                    jiraTransitionIssue idOrKey: 'DEV-3', input: transitionInputInP, site: 'jira'
                 }
             }            
         }                
