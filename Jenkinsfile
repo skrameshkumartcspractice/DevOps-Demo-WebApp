@@ -35,7 +35,7 @@ pipeline {
             }
             post{
                 always{
-                    jiraSendBuildInfo branch: 'DEV-4', site: 'tcsdevopscs.atlassian.net'
+                    jiraSendBuildInfo branch: 'DEV-5', site: 'tcsdevopscs.atlassian.net'
                 }                
             }
         }        
@@ -49,9 +49,9 @@ pipeline {
             }
             post{
                 always{
-                    jiraAddComment comment: "Deploy to Test was successful ${env.JOB_NAME} ${BUILD_NUMBER}", idOrKey: 'DEV-4', site: 'jira'
+                    jiraAddComment comment: "Deploy to Test was successful ${env.JOB_NAME} ${BUILD_NUMBER}", idOrKey: 'DEV-5', site: 'jira'
                     jiraSendDeploymentInfo environmentId: 'us-prod-1', environmentName: 'us-prod-1', environmentType: 'testing', serviceIds: [''], site: 'tcsdevopscs.atlassian.net', state: 'successful'
-                    jiraTransitionIssue idOrKey: 'DEV-4', input: transitionInputInP, site: 'jira'
+                    jiraTransitionIssue idOrKey: 'DEV-5', input: transitionInputInP, site: 'jira'
                 }
             }            
         }                
@@ -102,9 +102,9 @@ pipeline {
             }
             post{
                 always{
-                    jiraAddComment comment: "Deploy to Prod was successful ${JOB_NAME} ${BUILD_NUMBER}", idOrKey: 'DEV-4', site: 'jira'
+                    jiraAddComment comment: "Deploy to Prod was successful ${JOB_NAME} ${BUILD_NUMBER}", idOrKey: 'DEV-5', site: 'jira'
                     jiraSendDeploymentInfo environmentId: 'us-prod-1', environmentName: 'us-prod-1', environmentType: 'production', serviceIds: [''], site: 'tcsdevopscs.atlassian.net', state: 'successful'
-                    jiraTransitionIssue idOrKey: 'DEV-4', input: transitionInputDone, site: 'jira'
+                    jiraTransitionIssue idOrKey: 'DEV-5', input: transitionInputDone, site: 'jira'
                 }
             }            
         }                                          
