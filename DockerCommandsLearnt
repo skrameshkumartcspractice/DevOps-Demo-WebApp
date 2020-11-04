@@ -1,0 +1,2 @@
+//docker stop $(docker ps -aq) - To stop all the running containers
+//docker-compose up --build -d - To rebuild the application. (in mycase I had to copy the war file again)
