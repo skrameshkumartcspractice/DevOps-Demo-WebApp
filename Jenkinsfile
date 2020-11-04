@@ -1,3 +1,7 @@
+def transitionInputToDo = [ transition: [ id: 11] ]
+def transitionInputInP = [ transition: [ id: 21] ]
+def transitionInputDone = [ transition: [ id: 31] ]
+
 pipeline {
     agent any
     stages {
@@ -47,6 +51,7 @@ pipeline {
                 always{
                     jiraAddComment comment: "Deploy to Test was successful ${env.JOB_NAME} ${BUILD_NUMBER}", idOrKey: 'DEV-3', site: 'jira'
                     jiraSendDeploymentInfo environmentId: 'us-prod-1', environmentName: 'us-prod-1', environmentType: 'testing', serviceIds: [''], site: 'tcsdevopscs.atlassian.net', state: 'successful'
+                    jiraTransitionIssue idOrKey: 'DEV-3', input: transitionInputInp, site: 'jira'
                 }
             }            
         }                
@@ -99,6 +104,7 @@ pipeline {
                 always{
                     jiraAddComment comment: "Deploy to Prod was successful ${JOB_NAME} ${BUILD_NUMBER}", idOrKey: 'DEV-3', site: 'jira'
                     jiraSendDeploymentInfo environmentId: 'us-prod-1', environmentName: 'us-prod-1', environmentType: 'production', serviceIds: [''], site: 'tcsdevopscs.atlassian.net', state: 'successful'
+                    jiraTransitionIssue idOrKey: 'DEV-3', input: transitionInputDone, site: 'jira'
                 }
             }            
         }                                          
