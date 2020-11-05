@@ -86,12 +86,12 @@ pipeline {
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '\\functionaltest\\target\\surefire-reports', reportFiles: 'index.html', reportName: 'UI Test Report', reportTitles: ''])
             }
         }           
-        stage('Performance Test'){
-            steps{
-                slackSend channel: 'tcsdevops-casestudy', message: 'Running performance testing on Test Machine..'        
-                blazeMeterTest credentialsId: 'Blazemeter', testId: '8488353.taurus', workspaceId: '646652'
-            }
-        }                
+        // stage('Performance Test'){
+        //     steps{
+        //         slackSend channel: 'tcsdevops-casestudy', message: 'Running performance testing on Test Machine..'        
+        //         blazeMeterTest credentialsId: 'Blazemeter', testId: '8488353.taurus', workspaceId: '646652'
+        //     }
+        // }                
         stage('Prod Deploy') {
             steps {
                 slackSend channel: 'tcsdevops-casestudy', message: 'Deploying the app to Prod..'
